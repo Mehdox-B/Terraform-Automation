@@ -16,6 +16,7 @@ jobs:
       - name: Log in to Azure
         uses: azure/login@v1
         with:
+          ##This the credentials for azure login
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Initialize Terraform
