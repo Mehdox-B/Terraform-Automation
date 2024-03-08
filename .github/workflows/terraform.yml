@@ -3,7 +3,7 @@ name: Terraform Actions
 on:
   push:
     branches:
-      - main # Trigger the workflow on pushes to the main branch. Change as needed.
+      - main
 
 jobs:
   terraform:
@@ -13,11 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: "1.0.0" # Specify the version of Terraform you want to use
-
       - name: Log in to Azure
         uses: azure/login@v1
         with:
@@ -25,7 +20,6 @@ jobs:
             {
               "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
               "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
-              "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
               "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
             }
 
