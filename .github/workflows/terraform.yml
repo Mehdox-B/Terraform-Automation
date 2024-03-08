@@ -18,9 +18,9 @@ jobs:
         with:
           creds: |
             {
-              "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
-              "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
-              "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
+              "clientId": "${{ secrets.AZURE_AD_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.AZURE_AD_CLIENT_SECRET }}",
+              "tenantId": "${{ secrets.AZURE_AD_TENANT_ID }}"
             }
 
       - name: Initialize Terraform
