@@ -1,29 +1,60 @@
-name: Azure Login
+name: "Terraform"
 
 on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
-  azure_login:
+  terraform:
+    name: "Terraform"
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+      TF_VERSION: 1.5.7
     runs-on: ubuntu-latest
+    environment: dev
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
 
     steps:
-      - name: Checkout code
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up Azure CLI
-        uses: azure/CLI@v1
+      - name: "Terraform Format"
+        uses: hashicorp/terraform-github-actions@master
         with:
-          azcliversion: latest
+          tf_actions_version: ${{ env.TF_VERSION }}
+          tf_actions_subcommand: "fmt"
 
-      - name: Login to Azure
-        run: |
-          az login --service-principal \
-                   --username "$(echo $AZURE_CREDENTIALS | jq -r .clientId)" \
-                   --password "$(echo $AZURE_CREDENTIALS | jq -r .clientSecret)" \
-                   --tenant "$(echo $AZURE_CREDENTIALS | jq -r .tenantId)"
+      - name: "Terraform Init"
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: ${{ env.TF_VERSION }}
+          tf_actions_subcommand: "init"
 
-      - name: Verify Azure Login
-        run: az account show
+      - name: "Terraform Validate"
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: ${{ env.TF_VERSION }}
+          tf_actions_subcommand: "validate"
+
+      - name: "Terraform Plan"
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: ${{ env.TF_VERSION }}
+          tf_actions_subcommand: "plan"
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: ${{ env.TF_VERSION }}
+          tf_actions_subcommand: "apply"
