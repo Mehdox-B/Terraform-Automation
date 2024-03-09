@@ -1,12 +1,12 @@
 terraform {
   required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "=2.46.0"
     }
   }
 
-backend "azurerm" {
+  backend "azurerm" {
     resource_group_name  = "Hashicorp_Iac_Project"
     storage_account_name = "hashicorpstorageaccount"
     container_name       = "tfstatefile"
@@ -18,7 +18,7 @@ provider "azurerm" {
 }
 //---------Create a resource Groupe-------------//
 resource "azurerm_resource_group" "hashicorp_iac_azure_resources" {
-  name     = "Hashicorp_Iac_Project"
+  name     = "Hashicorp_Iac"
   location = "eastus"
   tags = {
     environment = "dev"
@@ -44,7 +44,7 @@ resource "azurerm_subnet" "hashicorp_iac_subnet" {
 }
 //---------Create a Storage Account resource---------//
 resource "azurerm_storage_account" "hashicorp_iac_storage_account" {
-  name                     = "hashicorpstorageaccount"
+  name                     = "hashicorpstorage"
   resource_group_name      = azurerm_resource_group.hashicorp_iac_azure_resources.name
   location                 = azurerm_resource_group.hashicorp_iac_azure_resources.location
   account_tier             = "Standard"
