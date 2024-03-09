@@ -1,18 +1,3 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=2.46.0"
-    }
-  }
-
-  backend "azurerm" {
-    resource_group_name  = "Hashicorp_Iac_Project"
-    storage_account_name = "hashicorpstorageaccount"
-    container_name       = "tfstatefile"
-    key                  = "terraform.tfstate"
-  }
-}
 provider "azurerm" {
   features {}
 }
