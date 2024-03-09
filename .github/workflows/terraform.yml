@@ -28,6 +28,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: "Terraform Format"
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: ${{ env.TF_VERSION }}
+          tf_actions_subcommand: "fmt"
+
       - name: "Terraform Init"
         uses: hashicorp/terraform-github-actions@master
         with:
