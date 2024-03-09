@@ -1,3 +1,16 @@
+terraform {
+  required_version = ">= 1.5.7"
+  backend "azurerm" {
+    resource_group_name  = "Hashicorp_Iac_Project"
+    storage_account_name = "hashicorpstorageaccount"
+    container_name       = "tfstatefile"
+    key                  = "terraform.tfstate"
+  }
+}
+ 
+provider "azurerm" {
+  features {}
+}
 //---------Create a resource Groupe-------------//
 resource "azurerm_resource_group" "hashicorp_iac_azure_resources" {
   name     = "Hashicorp_Iac_Project"

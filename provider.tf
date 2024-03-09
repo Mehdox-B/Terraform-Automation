@@ -4,7 +4,7 @@ terraform {
     resource_group_name  = "Hashicorp_Iac_Project"
     storage_account_name = "hashicorpstorageaccount"
     container_name       = "tfstatefile"
-    key                  = "terraform-azurerm.tfstate"
+    key                  = "terraform.tfstate"
   }
 }
  
