@@ -6,7 +6,7 @@ provider "azurerm" {
 }
 //---------Create a resource Groupe for provisioning resources-------------//
 resource "azurerm_resource_group" "hashicorp_iac_azure_resources" {
-  name     = "Hashicorp_Iac"
+  name     = "Hashicorp_Iac_Dev"
   location = "eastus"
   tags = {
     environment = "dev"
@@ -32,7 +32,7 @@ resource "azurerm_subnet" "hashicorp_iac_subnet" {
 }
 //---------Create a Storage Account resource---------//
 resource "azurerm_storage_account" "hashicorp_iac_storage_account" {
-  name                     = "hashicorpstorage"
+  name                     = "hashicorpstoragedev"
   resource_group_name      = azurerm_resource_group.hashicorp_iac_azure_resources.name
   location                 = azurerm_resource_group.hashicorp_iac_azure_resources.location
   account_tier             = "Standard"

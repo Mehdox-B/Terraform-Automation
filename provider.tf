@@ -2,9 +2,9 @@
 terraform {
   required_version = ">= 1.3"
   backend "azurerm" {
-    resource_group_name  = "Hashicorp_Iac_Project"
-    storage_account_name = "hashicorpstorageaccount"
-    container_name       = "tfstatefile"
+    resource_group_name  = "tamopstfstates"
+    storage_account_name = "mehdibenterraformproject"
+    container_name       = "tfstatedevops"
     key                  = "terraform.tfstate"
   }
   required_providers {
