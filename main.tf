@@ -1,7 +1,10 @@
+//------Specify Azure Resource Manager as Terraform Provider-----------//
 provider "azurerm" {
-  features {}
+  features {
+
+  }
 }
-//---------Create a resource Groupe-------------//
+//---------Create a resource Groupe for provisioning resources-------------//
 resource "azurerm_resource_group" "hashicorp_iac_azure_resources" {
   name     = "Hashicorp_Iac"
   location = "eastus"
