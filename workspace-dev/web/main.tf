@@ -19,5 +19,5 @@ resource "azurerm_storage_blob" "static_content" {
   storage_container_name = "$web"
   type                   = "Block"
   content_type           = "text/html"
-  source_content         = "<h1>Hello Terraform 👌👌👌</h1>"
+  source                 = "workspace-dev/web/Static/home.html"
 }
