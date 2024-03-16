@@ -5,14 +5,6 @@ This repository contains Terraform configurations for managing infrastructure on
 
 Additionally, it leverages GitHub Actions for automating Terraform workflows, enabling continuous integration and deployment (CI/CD) processes for managing the infrastructure.
 
-## Contents
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-- [Folder Structure](#folder-structure)
-- [Terraform Modules](#terraform-modules)
-- [GitHub Actions Workflows](#github-actions-workflows)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Prerequisites
 Before getting started with this project, ensure you have the following prerequisites:
